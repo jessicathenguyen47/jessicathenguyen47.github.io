@@ -1,0 +1,224 @@
+<!--
+Developer: Jessica Nguyen
+About: Reconciliation project
+-->
+<!DOCTYPE html>
+<html>
+<title>Origin</title>
+<head>
+	<style>
+		body{
+			margin:0;
+			width:auto;
+			background-color: #101010;
+		}
+		#header1{
+			background-color:#101010;
+			padding: 10px;
+			z-index: 1;
+			text-align:left;
+			font-size:20px;
+			color:#ffac41;
+			position:fixed;
+			top:0;
+			padding-left:30px;
+			width:100%;
+			opacity: 0;
+			transition:0.2s;
+			font-family: "Verdana", sans-serif;
+			font-weight: 600;
+		}
+		.header{
+			position:relative;
+		    left:0;
+		    top:0;
+		    width:100%;
+		    height:300px;
+		}
+		.header img{
+			z-index: -2;
+			position:absolute;
+			filter: invert(18%) sepia(0%) saturate(0%) hue-rotate(173deg) brightness(96%) contrast(93%);
+			left:0;
+		    top:0;
+		    width:100%;
+		    height:300px;
+		    opacity: 0.6;
+		    transform: translate(0,-35px);
+		}	
+		div.transbox {
+		  z-index: -1;
+		  border: thick solid #ffac41;
+		  vertical-align:middle;
+		  margin:35px 450px;
+		  transform: translate(0px, 50px);
+		}
+		.transbox h1{
+			margin:5%;
+			z-index:0;
+			position: relative;
+			color:#ffac41; 
+			font-family:"Verdana", sans-serif; 
+			word-spacing: 2px; 
+			letter-spacing: 0px;
+			font-weight:bold;
+			opacity: 1;
+			text-align:center;
+			font-size: 50px;
+		}
+			.sidenav {
+			height: 100%;
+			width: 0;
+			position: fixed;
+			z-index: 3;
+			top: 0;
+			left: 0;
+			background-color: rgba(255, 30, 86,0.8);
+			overflow-x: hidden;
+			transition: 0.5s;
+			padding-top: 60px;
+		}
+			/* The navigation menu links */
+		.sidenav a {
+			padding: 8px 8px 8px 32px;
+			text-decoration: none;
+			font-size: 25px;
+			font-family:"Rockwell", serif;
+			color: #101010;
+			display: block;
+			transition: 0.3s;
+		}
+		.sidenav .closebtn {
+			position: absolute;
+			top: 0;
+			right: 25px;
+			font-size: 36px;
+			margin-left: 50px;
+		}
+		.sidenav a:hover {
+		  	color: #ffac41;
+		}
+		.menu{
+			top:0;
+			width:30px;
+			position:fixed;
+			transform: translate(0px,-40px)
+			z-index:2;
+		}
+		.content{
+			margin:20px 90px;
+			border-style: hidden dashed hidden dashed;
+			border-color: #323232;
+			padding:0.5px 50px;
+		}
+		h2{
+			color:#ff1e56	;
+			font-family: "Verdana", sans-serif;
+			font-size:32px;
+			font-weight:800;
+		}
+		p{	
+			font-size:20px;
+			color:#B8B8B8;
+			text-align: left;
+			font-family: "Rockwell", serif;
+			line-height: 37px;
+			font-weight:400;
+		}
+		#header1 .progress-container{
+			width:100%;
+			transform: translate(-30px, 3px);
+			width: 100%;
+			height: 4px;
+			background: #323232;
+		}
+		#header1 .progress-bar{
+			width:100%;
+			height: 4px;
+			background: #ff1e56;
+			width: 0%;
+		}
+		#footer{
+			border-top-style: solid;
+			border-top-color: #ff1e56;
+			right:60px;
+			width:auto;
+			height:30px;
+			padding:10px;
+			background-color:#323232;
+			color:rgba(255, 30, 86,0.8);
+			font-family: Rockwell, sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<div class="menu" style="font-size:30px;cursor:pointer;color:#ff1e56;z-index:2;" onclick="openNav()">&#9776;</div>
+	<div id="header1"><span>ORIGIN | ULURU STATEMENT FROM THE HEART<span>
+	<div style="margin-left:0px" class="progress-container">
+   			<div style="margin-left:0px" class="progress-bar" id="myBar"></div>
+ 		</div>
+ 	</div>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		 <a href="./Reconciliation_Home.html">About</a>
+		 <a style="color:#323232" href="">Origin</a>
+		 <a href="./Reconciliation_Evolution.html">Evolution</a>
+		 <a href="./Reconciliation_Significance.html">Significance</a>
+		 <a href="./Reconciliation_Resources.html">Resources</a>
+	</div>
+	<script>
+	function openNav() {
+	  document.getElementById("mySidenav").style.width = "250px";
+	}
+
+	function closeNav() {
+	  document.getElementById("mySidenav").style.width = "0";
+	}
+	</script>
+	<div class="header">
+		<div class="transbox">
+			<h1>ORIGIN</h1>
+		</div>
+		<img src="https://www.nrl.com/siteassets/community/indigenous/uluru-statement-photo_clive-scollay.jpeg?center=0.42%2C0.5&preset=hero-standard-large">
+	</div>
+	<script>
+	window.onscroll = function() {
+		scrollFunction();
+		myFunction();
+	}
+	function scrollFunction() {
+  		if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    document.getElementById("header1").style.opacity = 1;}
+		else {
+    document.getElementById("header1").style.opacity = 0;}
+ 	}
+ 	function myFunction() {
+		var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+		var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+		var scrolled = (winScroll / height) * 100;
+		document.getElementById("myBar").style.width = scrolled + "%";
+	}
+	</script>
+	<div class="content">
+		<h2>The Referendum Council</h2>
+		<p>In 2015, Prime Minister Malcolm Turnbull and Opposition Leader Bill Shorten formed the Referendum Council to develop a vision for the next referendum for First Nations people. The Council included both Indigenous and non-Indigenous members.</p>
+
+		<h2>Injustice</h2>
+		<p>Martin Luther King's son said: "Your nation should be embarrassed by how it treats First Nations people". Indigenous youth was half of those under youth justice supervision, found the 2016 Australian Institute of Health and Welfare youth justice report. Furthermore, Indigenous health falls behind the non-Indigenous Australian with at least 10 years of a shorter life span, and double the child mortality rate. According to the Closing the Gap report of 2016, progress is slow.</p>
+
+		<p>After European arrival, Indigenous people struggled to take their rightful place back. The point of reconciliation has not been reached in practice.</p>
+
+		<h2>Delivering the Statement</h2>
+		<p>Half a year later, the council listened to over 1200 Indigenous Australians from a dozen separate dialogues across Australia. Decided from these visits,  there was a clear consensus: more needed to be done to achieve reconciliation.</p>
+
+		<p>This resulted in the Uluru Statement From the Heart. A document demanding Voice, Treaty and Truth. Voice captured the Council’s desire for an advisory Indigenous body consisting of traditional leaders in policy-making, bound by the Constitution. The low quality of life for First Nations people triggered a call to action: to fulfil the "missing ingredient" (labelled by Indigenous leaders) that was Indigenous voice constitutionally enshrined. It stated that Indigenous children were "alienated", hoping to empower them. Treaty and Truth referenced a Makaratta Commission; facilitating the agreement-making process between the Government and Indigenous people, along with truth-telling of Australia’s history. Makarrata - a Yolngu word meaning "a process of conflict resolution, peacemaking and justice". The Statement intends to reconcile with past oppressors and unite the country.</p>
+
+		<p>Surrounding the document is 250 signatures of individual delegates, bordered by two Uluru creation stories. The lead artist says they give the statement power.</p>
+
+		<p>The final product was produced on the 27th May 2017, the conclusion of the First Nations National Convention held at Uluru. It was officially presented by Professor Megan Davis, who read the statement aloud.</p>
+		
+
+	</div>
+	<div id="footer"><span style="text-align:left">Reconciliation Project 2020</span><span style="float:right">Developer: Jessica Nguyen</span></div>
+</body>
+</html>

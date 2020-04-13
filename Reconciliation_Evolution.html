@@ -1,0 +1,439 @@
+<!--
+Developer: Jessica Nguyen
+About: Reconciliation project
+-->
+<!DOCTYPE html>
+<html>
+<title>Evolution</title>
+<head>
+	<style>
+		*{
+			box-sizing: border-box;
+			}
+		body{
+			margin:0;
+			width:auto;
+			background-color: #101010;
+		}
+		#header1{
+			background-color:#101010;
+			padding: 10px;
+			z-index: 1;
+			text-align:left;
+			font-size:20px;
+			color:#ffac41;
+			position:fixed;
+			top:0;
+			padding-left:30px;
+			width:100%;
+			opacity: 0;
+			transition:0.2s;
+			font-family: "Verdana", sans-serif;
+			font-weight: 600;
+		}
+		.header{
+			position:relative;
+		    left:0;
+		    top:0;
+		    width:100%;
+		    height:300px;
+		}
+		.header img{
+			z-index: -2;
+			position:absolute;
+			filter: invert(18%) sepia(0%) saturate(0%) hue-rotate(173deg) brightness(96%) contrast(93%);
+			left:0;
+		    top:0;
+		    width:100%;
+		    height:310px;
+		    opacity: 0.6;
+		    transform: translate(0,-40px);
+		}	
+		div.transbox {
+		  z-index: -1;
+		  border: thick solid #ffac41;
+		  vertical-align:middle;
+		  margin:35px 400px;
+		  transform: translate(0px, 50px);
+		}
+		.transbox h1{
+			margin:5%;
+			z-index:0;
+			position: relative;
+			color:#ffac41; 
+			font-family:"Verdana", sans-serif; 
+			word-spacing: 2px; 
+			letter-spacing: 0px;
+			font-weight:bold;
+			opacity: 1;
+			text-align:center;
+			font-size: 50px;
+		}
+		.sidenav {
+			height: 100%;
+			width: 0;
+			position: fixed;
+			z-index: 3;
+			top: 0;
+			left: 0;
+			background-color: rgba(255, 30, 86,0.8);
+			overflow-x: hidden;
+			transition: 0.5s;
+			padding-top: 60px;
+		}
+			/* The navigation menu links */
+		.sidenav a {
+			padding: 8px 8px 8px 32px;
+			text-decoration: none;
+			font-size: 25px;
+			font-family:"Rockwell", serif;
+			color: #101010;
+			display: block;
+			transition: 0.3s;
+		}
+		.sidenav .closebtn {
+			position: absolute;
+			top: 0;
+			right: 25px;
+			font-size: 36px;
+			margin-left: 50px;
+		}
+		.sidenav a:hover {
+		  	color: #ffac41;
+		}
+		.menu{
+			top:0;
+			width:30px;
+			position:fixed;
+			transform: translate(0px,-40px)
+			z-index:2;
+		}
+		.content{
+			margin:20px 90px;
+			border-style: hidden dashed hidden dashed;
+			border-color: #323232;
+			padding:0.5px 50px;
+		}
+		h2{
+			color:#ff1e56;
+			font-family: "Verdana", sans-serif;
+			font-size:25px;
+			font-weight:800;
+		}
+		p{	
+			font-size:20px;
+			color:#B8B8B8;
+			text-align: left;
+			font-family: "Rockwell", serif;
+			line-height: 37px;
+			font-weight:400;
+		}
+		#header1 .progress-container{
+			width:110%;
+			transform: translate(-30px, 3px);
+			height: 4px;
+			background: #323232;
+		}
+		#header1 .progress-bar{
+			width:110%;
+			height: 4px;
+			background: #ff1e56;
+			width: 0%;
+		}
+		#footer{
+			box-sizing: content-box;
+			border-top-style: solid;
+			border-top-color: #ff1e56;
+			right:60px;
+			width:auto;
+			height:30px;
+			padding:10px;
+			background-color:#323232;
+			color:rgba(255, 30, 86,0.8);
+			font-family: Rockwell, sans-serif;
+		}
+		.timeline {
+			  position: relative;
+			  max-width: 1200px;
+			  margin: 0 auto;
+			}
+
+			/* The actual timeline (the vertical ruler) */
+			.timeline::after {
+			  content: '';
+			  position: absolute;
+			  width: 6px;
+			  background-color: #323232;
+			  top: 0;
+			  bottom: 0;
+			  left: 50%;
+			  margin-left: -3px;
+			  z-index: -1;
+			}
+					.container {
+			  padding: 10px 40px;
+			  position: relative;
+			  background-color: inherit;
+			  width: 50%;
+			}
+
+			/* The circles on the timeline */
+			.container::after {
+			  content: '';
+			  position: absolute;
+			  width: 25px;
+			  height: 25px;
+			  right: -17px;
+			  background-color: #323232;
+			  border: 4px solid #ff1e56;
+			  top: 15px;
+			  border-radius: 50%;
+			}
+
+			/* Place the container to the left */
+			.left {
+			  left: 0;
+			}
+
+			/* Place the container to the right */
+			.right {
+			  left: 50%;
+			}
+
+			/* Add arrows to the left container (pointing right) */
+			.left::before {
+			  content: " ";
+			  height: 0;
+			  position: absolute;
+			  top: 22px;
+			  width: 0;
+			  right: 30px;
+			  border: medium solid #323232;
+			  border-width: 10px 0 10px 10px;
+			  border-color: transparent transparent transparent #323232;
+			}
+
+			/* Add arrows to the right container (pointing left) */
+			.right::before {
+			  content: " ";
+			  height: 0;
+			  position: absolute;
+			  top: 22px;
+			  width: 0;
+			  left: 30px;
+			  border: medium solid #323232;
+			  border-width: 10px 10px 10px 0;
+			  border-color: transparent #323232 transparent transparent;
+			}
+
+			/* Fix the circle for containers on the right side */
+			.right::after {
+			  left: -16px;
+			}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+			@media screen and (max-width: 600px) {
+			/* Place the timelime to the left */
+			  .timeline::after {
+			    left: 31px;
+			  }
+
+			/* Full-width containers */
+			  .container {
+			    width: 100%;
+			    padding-left: 70px;
+			    padding-right: 25px;
+			  }
+
+			/* Make sure that all arrows are pointing leftwards */
+			  .container::before {
+			    left: 60px;
+			    border: medium solid #323232;
+			    border-width: 10px 10px 10px 0;
+			    border-color: transparent #323232 transparent transparent;
+			  }
+
+			/* Make sure all circles are at the same spot */
+			  .left::after, .right::after {
+			    left: 15px;
+			  }
+
+			/* Make all right containers behave like the left ones */
+			  .right {
+			    left: 0%;
+			  }
+			}
+			.stuff {
+				  padding: 3px 30px 20px;
+				  background-color: #323232;
+				  position: relative;
+				  border-radius: 6px;
+				}
+		ul {
+
+			 color:#B8B8B8;
+			 margin-left:-20px;
+			}
+		h3{
+			color:#ff1e56;
+			font-family: "Verdana", sans-serif;
+			font-size:32px;
+			font-weight:800;
+		}
+		html{
+			scroll-behavior: smooth;
+				}
+		#myBtn {
+		  font-family: Verdana, sans-serif;
+		  display: block; /* Hidden by default */ /* Fixed/sticky position */
+		  bottom: 20px;
+		  transform: translate(930px, 0px);/* Place the button 30px from the right */
+		  z-index: 99; /* Make sure it does not overlap */
+		  border: double #ff1e56; /* Remove borders */
+		  outline: none; /* Remove outline */
+		  background-color: #101010; /* Set a background color */
+		  color: #ff1e56; /* Text color */
+		  cursor: pointer; /* Add a mouse pointer on hover */
+		  padding: 12px 20px 1px 20px; /* Some padding */
+		  border-radius: 10px; /* Rounded corners */
+		  font-size: 40px;
+		  line-height: 20px; /* Increase font size */
+		}
+
+		#myBtn:hover {
+		  background-color: #323232; /* Add a dark-grey background on hover */
+		}
+	</style>
+</head>
+<body>
+	<div class="menu" style="font-size:30px;cursor:pointer;color:#ff1e56;z-index:2;" onclick="openNav()">&#9776;</div>
+	<div id="header1"><span>EVOLUTION | ULURU STATEMENT FROM THE HEART<span>
+	<div style="margin-left:0px" class="progress-container">
+   			<div style="margin-left:0px" class="progress-bar" id="myBar"></div>
+ 		</div>
+ 	</div>
+	<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		 <a href="./Reconciliation_Home.html">About</a>
+		 <a  href="./Reconciliation_Origin.html">Origin</a>
+		 <a style="color:#323232" href="#evolution">Evolution</a>
+		 <a href="./Reconciliation_Significance.html">Significance</a>
+		 <a href="./Reconciliation_Resources.html">Resources</a>
+	</div>
+	<script>
+	function openNav() {
+	  document.getElementById("mySidenav").style.width = "250px";
+	}
+
+	function closeNav() {
+	  document.getElementById("mySidenav").style.width = "0";
+	}
+	</script>
+	<div class="header">
+		<div class="transbox">
+			<h1>EVOLUTION</h1>
+		</div>
+		<img src="../images/evolution.jpg">
+	</div>
+	<script>
+	window.onscroll = function() {
+		scrollFunction();
+		myFunction();
+	}
+	function scrollFunction() {
+  		if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    document.getElementById("header1").style.opacity = 1;}
+		else {
+    document.getElementById("header1").style.opacity = 0;}
+ 	}
+ 	function myFunction() {
+		var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+		var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+		var scrolled = (winScroll / height) * 100;
+		document.getElementById("myBar").style.width = scrolled + "%";
+	}
+	</script>
+
+	<div class="content">
+		<h3>Timeline</h3>
+			<p>The Uluru Statement From the Heart evolved into a people's fight for healing. Despite the Government's rejection, individuals are still advocating for Voice, Treaty, and Truth today.</p>
+		<div class="timeline">
+			  <div class="container left">
+			    <div class="stuff">
+			      <h2>7 Dec 2015</h2>
+			      <p>Turnbull appoints a Referendum Council.</p>
+			    </div>
+			  </div>
+			  <div class="container right">
+			    <div class="stuff">
+			      <h2>14 Dec 2016</h2>
+			      <p>Referendum Council meets with 12 regional dialogues.</p>
+			    </div>
+			  </div>
+			  <div class="container left">
+			    <div class="stuff">
+			      <h2>22 May 2017</h2>
+			      <ul><li><p>First Nations National Convention begins</p></li><li><p>Draft signed by 250 delegates</p></li></ul>
+			    </div>
+			  </div>
+			  <div class="container right">
+			    <div class="stuff">
+			      <h2>26 May 2017</h2>
+			      <p>Statement released.</p>
+			    </div>
+			  </div>
+			  <div class="container left">
+			    <div class="stuff">
+			      <h2>Apr 2017</h2>
+			      <p>Activist Thomas Mayor spends 18 months travelling Australia promoting the statement.</p>
+			    </div>
+			  </div>
+			  <div class="container right">
+			    <div class="stuff">
+			      <h2>30 Jun 2017</h2>
+			      <p>Referendum Council gives final report to Turnbull and Shorten.</p>
+			    </div>
+			  </div>
+			<div class="container left">
+			    <div class="stuff">
+			      <h2>3 Aug 2017</h2>
+			      <ul><li><p>Shorten calls for committee to finalise a referendum question</p></li><li> <p>Megan Davis and Pat Anderson disagree, deeming another committee unnecessary</p></li></ul>
+			    </div>
+			  </div>
+			  <div class="container right">
+			    <div class="stuff">
+			      <h2>4 Aug 2017</h2>
+			      <p>June Oscar urges for constitutional reform: “origins well before the constitution” at Garma Festival.</p>
+			    </div>
+			  </div>
+			  <div class="container left">
+			    <div class="stuff">
+			      <h2>5 Oct 2017</h2>
+			      <ul><li><p>Turnbull presented statement at Garma Festival</p></li><li><p> "Difficult": Undergo careful consideration</p></li><li><p>Pat Anderson: PM lacks commitment - “Only way forward through the people”</p></li></ul>
+			    </div>
+			  </div>
+			  <div class="container right">
+			    <div class="stuff">
+			      <h2>26 Oct 2017</h2>
+			      <ul><li><p>Turnbull rejects Uluru statement</p></li><li><p>Believes public would vote no in a referendum</p></li><li><p>Criticism ensues</p></li></ul>
+			    </div>
+			  </div>
+			  <div class="container left">
+			    <div class="stuff">
+			      <h2>To Present Day</h2>
+			      <p>The reconciliation effort continues, with the Statement's healing vision holding strong in the public's eyes and their growing supporters.</p>
+			    </div>
+			  </div>
+			</div>
+			<br>
+			<button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
+		<script>
+		function topFunction() {
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0; 
+		}
+		</script>
+	</div>
+	<div id="footer" style="padding-bottom: 10px"><span style="text-align:left">Reconciliation Project 2020</span><span style="float:right">Developer: Jessica Nguyen</span></div>
+</body>
+</html>
